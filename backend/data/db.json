@@ -1,14 +1,20 @@
 {
     "users": [
         {
-            "id": 1, 
+            "id": 1,
             "username": "admin",
             "password": "guest"
         },
         {
-            "id": 2, 
+            "id": 2,
             "username": "Helge",
             "password": "Addera random id för ny användare"
+        }
+    ],
+    "channels": [
+        {
+            "channelId": "9999",
+            "channelName": "general"
         }
     ]
 }
