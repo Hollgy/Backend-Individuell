@@ -2,7 +2,7 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 import express from 'express'
-import usersRouter from './endpoints/users.js'
+// import usersRouter from './endpoints/users.js'
 import cors from 'cors'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
