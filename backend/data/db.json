@@ -9,12 +9,26 @@
             "id": 2,
             "username": "Helge",
             "password": "Addera random id för ny användare"
+        },
+        {
+            "id": 3881,
+            "username": "TestAdmin",
+            "password": "TestGuest"
+        },
+        {
+            "id": 47783,
+            "username": "TestAdmin",
+            "password": "TestGuest"
         }
     ],
     "channels": [
         {
-            "channelId": "9999",
+            "channelId": 9999,
             "channelName": "general"
+        },
+        {
+            "channelId": 79786,
+            "channelName": "Testkanal2"
         }
     ]
 }
