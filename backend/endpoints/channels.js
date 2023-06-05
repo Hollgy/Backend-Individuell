@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
 })
 
 
-// DELETE[] ta bort kanaler
+// DELETE[x] ta bort kanaler
 router.delete('/:id', async (req, res) => {
     let id = Number(req.params.id)
     

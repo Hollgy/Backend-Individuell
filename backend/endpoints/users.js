@@ -1,13 +1,12 @@
 import express from 'express'
 import { getDb } from '../data/database.js'
+import isValidUser from '../data/constants.js'
 
 const router = express.Router()
 const db = getDb()
 
 
 // endpoints för användare
-// PUT[] ändra användare
-// DELETE[] ta bort användare
 
 // GET[x] hämta alla användare
 router.get('/', async (req, res) => {
@@ -26,6 +25,7 @@ router.post('/', async (req, res) => {
     res.send({ id: addUser.id })
 })
 
+// DELETE[x] ta bort användare
 router.delete('/:id', async (req, res) => {
     let id = Number(req.params.id)
 
@@ -45,5 +45,35 @@ router.delete('/:id', async (req, res) => {
     await db.write()
     res.sendStatus(200)
 });
+
+// PUT[] ändra användare
+router.put('/:id', async (req, res) => {
+    const id = Number(req.params.id);
+
+    // Validera body (object)
+    if (!isValidUser(req.body)) {
+        res.sendStatus(400);
+        console.log('test1');
+        return;
+    }
+
+    // Finns användare med samma id?
+    // I så fall uppdatera objektet
+    await db.read();
+    const oldUserIndex = db.data.users.findIndex(user => user.id === id);
+    if (oldUserIndex === -1) {
+        res.sendStatus(404);
+        console.log('test2');
+        return;
+    }
+
+    const updatedUser = req.body;
+    updatedUser.id = id;
+
+    db.data.users[oldUserIndex] = updatedUser;
+    await db.write();
+    res.sendStatus(200);
+});
+
 
 export default router
