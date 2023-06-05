@@ -1,0 +1,14 @@
+{
+    "users": [
+        {
+            "id": 1, 
+            "username": "admin",
+            "password": "guest"
+        },
+        {
+            "id": 2, 
+            "username": "Helge",
+            "password": "Addera random id för ny användare"
+        }
+    ]
+}
