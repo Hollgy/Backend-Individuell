@@ -8,7 +8,7 @@ function isValidUser(u) {
         return false
     }
 
-    let usernameIsValid = (typeof u.name) === 'string'
+    let usernameIsValid = (typeof u.username) === 'string'
     usernameIsValid = usernameIsValid && u.name !== ''
 
     let passwordIsValid = (typeof u.password) === 'string'

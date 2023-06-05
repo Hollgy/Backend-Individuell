@@ -1,19 +1,14 @@
 {
   "users": [
     {
-      "id": 1,
       "username": "admin",
-      "password": "guest"
+      "password": "guest",
+      "id": 1
     },
     {
-      "id": 2,
-      "username": "Helge",
-      "password": "Addera random id för ny användare"
-    },
-    {
-      "id": 3881,
-      "username": "TestAdmin",
-      "password": "TestGuest"
+      "username": "admin2",
+      "password": "guest2",
+      "id": 2
     }
   ],
   "channels": [
