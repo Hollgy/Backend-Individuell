@@ -14,6 +14,28 @@ router.get('/', async (req, res) => {
     res.send(db.data.users)
 })
 
+
+// GET[x] :id
+
+router.get('/:id', async (req, res) => {
+    let id = Number(req.params.id);
+
+    if (!isNaN(id)) {
+        await db.read();
+        const user = db.data.users.find((p) => p.id === id);
+        if (user) {
+            res.send(user);
+        } else {
+            res.status(404).send('User not found.');
+        }
+    } else {
+        res.status(400).send('Invalid id.');
+    }
+});
+
+
+
+
 // POST[x] addera användare
 router.post('/', async (req, res) => {
     let addUser = req.body
@@ -65,7 +87,7 @@ router.put('/:id', async (req, res) => {
         console.log('test2');
         return;
     }
-    
+
     // I så fall uppdatera objektet
     const updatedUser = req.body;
     updatedUser.id = id;

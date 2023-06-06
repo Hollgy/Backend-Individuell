@@ -13,6 +13,22 @@ router.get('/', async (req, res) => {
     res.send(db.data.channels)
 })
 
+// GET[x] :id
+router.get('/:id', async (req, res) => {
+    let id = Number(req.params.id);
+
+    if (!isNaN(id)) {
+        await db.read();
+        const channel = db.data.channels.find((p) => p.id === id);
+        if (channel) {
+            res.send(channel);
+        } else {
+            res.status(404).send('User not found.');
+        }
+    } else {
+        res.status(400).send('Invalid id.');
+    }
+});
 
 // POST[x] addera kanaler
 router.post('/', async (req, res) => {
@@ -65,11 +81,11 @@ router.put('/:id', async (req, res) => {
         console.log('log3');
         return;
     }
-    
+
     // I så fall uppdatera objektet
     const updatedChannel = req.body;
     updatedChannel.id = id;
-    
+
     db.data.channels[oldChannelIndex] = updatedChannel;
     await db.write();
     res.sendStatus(200);
