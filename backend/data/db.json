@@ -1,28 +1,40 @@
 {
-    "users": [
-        {
-            "username": "admin",
-            "password": "guest",
-            "id": 1
-        },
-        {
-            "username": "admin2",
-            "password": "guest2",
-            "id": 2
-        }
-    ],
-    "channels": [
-        {
-            "name": "general",
-            "id": 9999
-        },
-        {
-            "name": "Testnamn",
-            "id": 79786
-        },
-        {
-            "name": "Testkanal3",
-            "id": 61117
-        }
-    ]
+  "users": [
+    {
+      "username": "admin",
+      "password": "guest",
+      "id": 1
+    },
+    {
+      "username": "admin2",
+      "password": "guest2",
+      "id": 2
+    }
+  ],
+  "channels": [
+    {
+      "name": "general",
+      "id": 1
+    },
+    {
+      "name": "Testnamn",
+      "id": 2
+    },
+    {
+      "name": "Testkanal3",
+      "id": 3
+    }
+  ],
+  "messages": [
+    {
+      "author": "User One",
+      "content": "Hello World",
+      "id": 1
+    },
+    {
+      "author": "User Two",
+      "content": "Hello Everyone",
+      "id": 2
+    }
+  ]
 }

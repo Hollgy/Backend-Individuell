@@ -8,6 +8,12 @@ const db = getDb()
 
 // endpoints för användare
 
+// GET[x] hämta och visa användare
+// GET[x] :id
+// POST[x] addera användare
+// DELETE[x] ta bort användare
+// PUT [x] Ändra namn på användare
+
 // GET[x] hämta alla användare
 router.get('/', async (req, res) => {
     await db.read()
@@ -16,7 +22,6 @@ router.get('/', async (req, res) => {
 
 
 // GET[x] :id
-
 router.get('/:id', async (req, res) => {
     let id = Number(req.params.id);
 

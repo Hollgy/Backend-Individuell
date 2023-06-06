@@ -7,6 +7,7 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import usersRouter from './endpoints/users.js'
 import channelsRouter from './endpoints/channels.js'
+import messagesRouter from './endpoints/messages.js'
 
 //server config
 const port = process.env.PORT || 9922
@@ -27,8 +28,9 @@ app.use(express.static(pathToStaticFolder))
 
 //api
 
-app.use('/api/users', usersRouter )
-app.use('/api/channels', channelsRouter )
+app.use('/api/users', usersRouter)
+app.use('/api/channels', channelsRouter)
+app.use('/api/messages', messagesRouter)
 
 
 

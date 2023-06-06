@@ -8,6 +8,12 @@ const db = getDb()
 // endpoints för kanaler
 
 // GET[x] hämta och visa kanaler
+// GET[x] :id
+// POST[x] addera kanaler
+// DELETE[x] ta bort kanaler
+// PUT [x] Ändra namn på kanal
+
+// GET[x] hämta och visa kanaler
 router.get('/', async (req, res) => {
     await db.read()
     res.send(db.data.channels)
@@ -23,7 +29,7 @@ router.get('/:id', async (req, res) => {
         if (channel) {
             res.send(channel);
         } else {
-            res.status(404).send('User not found.');
+            res.status(404).send('Channel not found.');
         }
     } else {
         res.status(400).send('Invalid id.');
@@ -63,13 +69,13 @@ router.delete('/:id', async (req, res) => {
     res.sendStatus(200)
 });
 
+// PUT [x] Ändra namn på kanal
 router.put('/:id', async (req, res) => {
     const id = Number(req.params.id);
 
     // Validera body (object)
     if (!isValidChannel(req.body)) {
         res.sendStatus(400);
-        console.log('log2');
         return;
     }
 
@@ -78,7 +84,6 @@ router.put('/:id', async (req, res) => {
     const oldChannelIndex = db.data.channels.findIndex(channel => channel.id === id);
     if (oldChannelIndex === -1) {
         res.sendStatus(404);
-        console.log('log3');
         return;
     }
 
