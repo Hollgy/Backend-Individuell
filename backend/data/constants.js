@@ -1,7 +1,6 @@
 
 
 function isValidUser(u) {
-
     if ((typeof u) !== 'object') {
         return false
     } else if (u === null) {
@@ -21,6 +20,24 @@ function isValidUser(u) {
     return true
 
 }
+function isValidChannel(c) {
+
+    if ((typeof c) !== 'object') {
+        return false
+    } else if (c === null) {
+        return false
+    }
+
+    let channelNameIsValid = (typeof c.name) === 'string'
+    channelNameIsValid = channelNameIsValid && c.name !== ''
 
 
-export default isValidUser
+    if (!channelNameIsValid) {
+        return false
+    }
+    return true
+
+}
+
+
+export { isValidUser, isValidChannel }

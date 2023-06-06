@@ -1,24 +1,28 @@
 {
-  "users": [
-    {
-      "username": "admin",
-      "password": "guest",
-      "id": 1
-    },
-    {
-      "username": "admin2",
-      "password": "guest2",
-      "id": 2
-    }
-  ],
-  "channels": [
-    {
-      "id": 9999,
-      "channelName": "general"
-    },
-    {
-      "id": 79786,
-      "channelName": "Testkanal2"
-    }
-  ]
+    "users": [
+        {
+            "username": "admin",
+            "password": "guest",
+            "id": 1
+        },
+        {
+            "username": "admin2",
+            "password": "guest2",
+            "id": 2
+        }
+    ],
+    "channels": [
+        {
+            "name": "general",
+            "id": 9999
+        },
+        {
+            "name": "Testnamn",
+            "id": 79786
+        },
+        {
+            "name": "Testkanal3",
+            "id": 61117
+        }
+    ]
 }

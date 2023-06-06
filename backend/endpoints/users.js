@@ -1,6 +1,6 @@
 import express from 'express'
 import { getDb } from '../data/database.js'
-import isValidUser from '../data/constants.js'
+import { isValidUser } from '../data/constants.js'
 
 const router = express.Router()
 const db = getDb()
@@ -46,7 +46,7 @@ router.delete('/:id', async (req, res) => {
     res.sendStatus(200)
 });
 
-// PUT[] ändra användare
+// PUT[x] ändra användare
 router.put('/:id', async (req, res) => {
     const id = Number(req.params.id);
 
@@ -58,7 +58,6 @@ router.put('/:id', async (req, res) => {
     }
 
     // Finns användare med samma id?
-    // I så fall uppdatera objektet
     await db.read();
     const oldUserIndex = db.data.users.findIndex(user => user.id === id);
     if (oldUserIndex === -1) {
@@ -66,7 +65,8 @@ router.put('/:id', async (req, res) => {
         console.log('test2');
         return;
     }
-
+    
+    // I så fall uppdatera objektet
     const updatedUser = req.body;
     updatedUser.id = id;
 
