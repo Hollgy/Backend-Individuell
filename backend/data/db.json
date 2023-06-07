@@ -13,16 +13,32 @@
   ],
   "channels": [
     {
-      "name": "general",
-      "id": 1
+      "name": "General",
+      "id": 48289
     },
     {
-      "name": "Testnamn",
-      "id": 2
+      "name": "Shitposts",
+      "id": 62192
     },
     {
-      "name": "Testkanal3",
-      "id": 3
+      "name": "Allmänt",
+      "id": 2595
+    },
+    {
+      "name": "Knark",
+      "id": 81719
+    },
+    {
+      "name": "Achtung",
+      "id": 76043
+    },
+    {
+      "name": "Baby",
+      "id": 25038
+    },
+    {
+      "name": "mashallah",
+      "id": 37655
     }
   ],
   "messages": [

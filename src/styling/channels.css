@@ -1,0 +1,18 @@
+.show-channel-section{
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    text-align: center;
+}
+
+.channel{
+    /* border: 1px solid pink; */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 150px;
+    margin: 0;
+    padding: 0;
+}
