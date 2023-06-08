@@ -1,29 +1,51 @@
 {
   "users": [
     {
-      "name": "admin",
-      "password": "guest",
-      "id": 1
+      "name": "PratgladePelle",
+      "password": "Pelle",
+      "id": 56672
     },
     {
-      "name": "admin2",
-      "password": "guest2",
-      "id": 33488
+      "name": "SocialaSara",
+      "password": "Sara",
+      "id": 88645
     },
     {
-      "name": "admin3",
-      "password": "guest3",
-      "id": 23831
+      "name": "TrevligaTommy",
+      "password": "Tommy",
+      "id": 1354
+    },
+    {
+      "name": "Vänliga Vera",
+      "password": "Vera",
+      "id": 99486
+    },
+    {
+      "name": "GladaGustav",
+      "password": "Gustav",
+      "id": 91836
     }
   ],
   "channels": [
     {
-      "name": "General",
-      "id": 48289
+      "name": "koda",
+      "id": 64073
     },
     {
-      "name": "Allmänt",
-      "id": 2595
+      "name": "random",
+      "id": 47772
+    },
+    {
+      "name": "grupp1",
+      "id": 57210
+    },
+    {
+      "name": "grupp2",
+      "id": 76500
+    },
+    {
+      "name": "grupp3",
+      "id": 24115
     }
   ],
   "messages": [
