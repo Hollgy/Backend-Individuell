@@ -12,6 +12,7 @@ function App() {
     const [channelName, setChannelName] = useState('')
     const [user, setUser] = useState([])
     const [userName, setUserName] = useState('')
+    const [userPassword, setUserPassword] = useState('')
 
     const handleClickGetChannels = async () => {
         try {
@@ -70,8 +71,9 @@ function App() {
         event.preventDefault();
         try {
             setUserName('');
-            const newUser = { name: userName, id: Math.random().toString() };
-            await addUser(userName, setErrorMessage, getChannels, newUser);
+            setUserPassword('')
+            const newUser = { name: userName, password: userPassword, id: Math.random().toString() };
+            await addUser(userName, userPassword, setErrorMessage, getChannels, newUser);
             setUser((prevUsers) => [...prevUsers, newUser]);
             console.log('user added');
         } catch (error) {
@@ -105,7 +107,8 @@ function App() {
                 <br />
                 <section className='add-user-section'>
                     <form action="submit" className='add-user-form'>
-                        <input type="text" placeholder='Namn på ny användare' value={userName} onChange={e => setUserName(e.target.value)} /><button type='submit' onClick={handleSubmitUser}>Lägg till användare</button>
+                        <input type="text" placeholder='Namn på ny användare' value={userName} onChange={e => setUserName(e.target.value)} />
+                        <input type="text" placeholder='Ange lösenord' value={userPassword} onChange={e => setUserPassword(e.target.value)} /><button type='submit' onClick={handleSubmitUser}>Lägg till användare</button>
                     </form>
                 </section>
                 <br />

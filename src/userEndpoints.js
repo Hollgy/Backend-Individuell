@@ -35,13 +35,14 @@ const deleteUser = async (userId, setErrorMessage, setUser) => {
     }
 };
 
-const addUser = async (userName, setErrorMessage, getUsers, setUser) => {
+const addUser = async (userName, userPassword, setErrorMessage, getUsers, setUser) => {
     setErrorMessage('');
     try {
         const response = await fetch(`/api/users`, {
             method: 'POST',
             body: JSON.stringify({
                 name: userName,
+                password: userPassword,
             }),
             headers: {
                 'Content-Type': 'application/json',

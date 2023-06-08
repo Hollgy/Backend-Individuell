@@ -6,8 +6,14 @@
       "id": 1
     },
     {
+      "name": "admin2",
+      "password": "guest2",
+      "id": 33488
+    },
+    {
       "name": "admin3",
-      "id": 45976
+      "password": "guest3",
+      "id": 23831
     }
   ],
   "channels": [
