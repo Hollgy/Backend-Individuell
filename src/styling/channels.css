@@ -1,18 +1,14 @@
-.show-channel-section{
-    border-right: 1px solid black;
+.show-channel-section {
     display: flex;
     flex-direction: column;
     width: 150px;
-    text-align: center;
+    margin-left: 10px;
 }
 
-.channel{
-    /* border: 1px solid pink; */
-    text-align: center;
+.channel {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
     width: 150px;
-    margin: 0;
-    padding: 0;
+    margin: 5px;
+    margin-left: 5px;
+
 }

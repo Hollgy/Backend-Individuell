@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import './styling/App.css'
 import './styling/channels.css'
 import './styling/users.css'
+import './styling/sidebar.css'
+import './styling/header.css'
 import { getChannels, deleteChannel, addChannel } from './channelEndpoints'
 import { getUsers, deleteUser, addUser } from './userEndpoints'
 
@@ -91,51 +93,47 @@ function App() {
 
 
     return (
-        <>
-            <aside>
-
-                <div><h1>
-                    Chappy
-                </h1></div>
-                <hr />
-                <div>
-                    <section className='add-channel-section'>
-                        <form action="submit" className='add-channel-form'>
-                            {/* <input type="text" placeholder='Namn på ny kanal' value={channelName} onChange={e => setChannelName(e.target.value)} /><button type='submit' onClick={handleSubmitChannel}>Lägg till Kanal</button> */}
-                        </form>
-                    </section>
-                    <section className='show-channel-section'>
-                        <div><h3>[Kanaler]:</h3></div>
-                        {/* <button onClick={handleGetChannels}>Show me all the channels</button> */}
-                        {channel.map(channel => (
-                            <div className='channel' key={channel.id}>
-                                <p> #{channel.name}</p>
-                                {/* <button onClick={() => handleDeleteChannel(channel.id)}>Delete Channel</button> */}
-                            </div>
-                        ))}
-                    </section>
-                    <br />
-                    <section className='add-user-section'>
-                        <form action="submit" className='add-user-form'>
-                            {/* <input type="text" placeholder='Namn på ny användare' value={userName} onChange={e => setUserName(e.target.value)} /> */}
-                            {/* <input type="text" placeholder='Ange lösenord' value={userPassword} onChange={e => setUserPassword(e.target.value)} /><button type='submit' onClick={handleSubmitUser}>Lägg till användare</button> */}
-                        </form>
-                    </section>
-                    <br />
-                    <section className='show-user-section'>
-                        <div><h3>[DM]:</h3></div>
-                        {/* <button onClick={handleGetUsers}>Show me all the users</button> */}
-                        {user.map(user => (
-                            <div className='user' key={user.id}>
-                                <p> {user.name}</p>
-                                {/* <button onClick={() => handleDeleteUser(user.id)}>Delete Channel</button> */}
-                            </div>
-                        ))}
-                    </section>
-                </div>
-            </aside>
-
-        </>
+        <body>
+            <header className='header'><h1>
+                Chappy
+            </h1></header>
+            <hr />
+            <div className='side-bar'>
+                <section className='add-channel-section'>
+                    <form action="submit" className='add-channel-form'>
+                        {/* <input type="text" placeholder='Namn på ny kanal' value={channelName} onChange={e => setChannelName(e.target.value)} /><button type='submit' onClick={handleSubmitChannel}>Lägg till Kanal</button> */}
+                    </form>
+                </section>
+                <section className='show-channel-section'>
+                    <div><h3>[Kanaler]:</h3></div>
+                    {/* <button onClick={handleGetChannels}>Show me all the channels</button> */}
+                    {channel.map(channel => (
+                        <div className='channel' key={channel.id}>
+                            <p> #{channel.name}</p>
+                            {/* <button onClick={() => handleDeleteChannel(channel.id)}>Delete Channel</button> */}
+                        </div>
+                    ))}
+                </section>
+                <br />
+                <section className='add-user-section'>
+                    <form action="submit" className='add-user-form'>
+                        {/* <input type="text" placeholder='Namn på ny användare' value={userName} onChange={e => setUserName(e.target.value)} /> */}
+                        {/* <input type="text" placeholder='Ange lösenord' value={userPassword} onChange={e => setUserPassword(e.target.value)} /><button type='submit' onClick={handleSubmitUser}>Lägg till användare</button> */}
+                    </form>
+                </section>
+                <br />
+                <section className='show-user-section'>
+                    <div><h3>[DM]:</h3></div>
+                    {/* <button onClick={handleGetUsers}>Show me all the users</button> */}
+                    {user.map(user => (
+                        <div className='user' key={user.id}>
+                            <p> {user.name}</p>
+                            {/* <button onClick={() => handleDeleteUser(user.id)}>Delete Channel</button> */}
+                        </div>
+                    ))}
+                </section>
+            </div>
+        </body>
     )
 }
 
