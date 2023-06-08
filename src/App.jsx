@@ -10,7 +10,6 @@ function App() {
     const [errorMessage, setErrorMessage] = useState('')
     const [channelName, setChannelName] = useState('')
 
-
     const handleClickGetChannels = async () => {
         try {
             const data = await getChannels();
@@ -30,46 +29,6 @@ function App() {
         }
     };
 
-
-
-    // ENDPOINT POST PRODUCT
-    // const addChannel = async (channelName) => {
-    //     setErrorMessage('');
-    //     try {
-    //         const response = await fetch(`/api/channels`, {
-    //             method: 'POST',
-    //             body: JSON.stringify({
-    //                 name: channelName,
-    //             }),
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //         });
-    //         if (response.status === 200) {
-    //             // Channel successfully added
-    //             // Perform any necessary actions after adding the channel
-    //             getChannels();
-    //         } else if (response.status === 400) {
-    //             // Invalid request
-    //             const errorText = await response.text();
-    //             setErrorMessage(errorText);
-    //         } else if (response.status === 404) {
-    //             // Channel not found
-    //             const errorText = await response.text();
-    //             setErrorMessage(errorText);
-    //         } else {
-    //             // Other error occurred
-    //             throw new Error('An error occurred while adding the channel');
-    //         }
-    //     } catch (error) {
-    //         // Handle network or fetch error
-    //         setErrorMessage(error.message);
-    //         console.log('Error in adding channel');
-    //     }
-    // };
-
-
-
     const handleSubmitChannel = async (event) => {
         event.preventDefault();
         try {
@@ -83,11 +42,8 @@ function App() {
         }
     };
 
-
-
     return (
         <>
-
             <div><h1>
                 Chappy
             </h1></div>
