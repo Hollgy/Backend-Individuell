@@ -1,78 +1,73 @@
 
-const getChannels = async () => {
+const getUsers = async () => {
     try {
-        const response = await fetch('/api/channels');
+        const response = await fetch('/api/users');
         const data = await response.json();
         return data
     } catch (error) {
-        console.log('Error in fetching channels');
+        console.log('Error in fetching users');
     }
 };
 
-const deleteChannel = async (channelId, setErrorMessage, setChannel) => {
+const deleteUser = async (userId, setErrorMessage, setUser) => {
     setErrorMessage('');
     try {
-        const response = await fetch(`/api/channels/${channelId}`, { method: 'DELETE' });
+        const response = await fetch(`/api/users/${userId}`, { method: 'DELETE' });
         if (response.status === 200) {
-            // Channel successfully deleted
-            setChannel((prevChannels) => prevChannels.filter((channel) => channel.id !== channelId));
+            // user successfully deleted
+            setUser((prevUsers) => prevUsers.filter((user) => user.id !== userId));
         } else if (response.status === 400) {
             // Invalid ID
             const errorText = await response.text();
             setErrorMessage(errorText);
         } else if (response.status === 404) {
-            // Channel not found
+            // user not found
             const errorText = await response.text();
             setErrorMessage(errorText);
         } else {
             // Other error occurred
-            throw new Error('An error occurred while deleting the channel');
+            throw new Error('An error occurred while deleting the user');
         }
     } catch (error) {
         // Handle network or fetch error
         setErrorMessage(error.message);
-        console.log('Error in removing channel');
+        console.log('Error in removing user');
     }
 };
 
-const addChannel = async (channelName, setErrorMessage, getChannels, setChannel) => {
+const addUser = async (userName, setErrorMessage, getUsers, setUser) => {
     setErrorMessage('');
     try {
-        const response = await fetch(`/api/channels`, {
+        const response = await fetch(`/api/users`, {
             method: 'POST',
             body: JSON.stringify({
-                name: channelName,
+                name: userName,
             }),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
         if (response.status === 200) {
-            // Channel successfully added
-            // Perform any necessary actions after adding the channel
-            getChannels();
+            // user successfully added
+            // Perform any necessary actions after adding the user
+            getUsers();
         } else if (response.status === 400) {
             // Invalid request
             const errorText = await response.text();
             setErrorMessage(errorText);
         } else if (response.status === 404) {
-            // Channel not found
+            // user not found
             const errorText = await response.text();
             setErrorMessage(errorText);
         } else {
             // Other error occurred
-            throw new Error('An error occurred while adding the channel');
+            throw new Error('An error occurred while adding the user');
         }
     } catch (error) {
         // Handle network or fetch error
         setErrorMessage(error.message);
-        console.log('Error in adding channel');
+        console.log('Error in adding user');
     }
 };
 
-
-
-
-
-
-export { getChannels, deleteChannel, addChannel }
+export { getUsers, deleteUser, addUser }
