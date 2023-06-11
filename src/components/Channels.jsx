@@ -79,7 +79,7 @@ function Channels() {
             <hr />
             <div className='side-bar'>
                 <section className='add-channel-section'>
-                    <form action='submit' className='add-channel-form'>
+                    {/* <form action='submit' className='add-channel-form'>
                         <input
                             type='text'
                             placeholder='Namn på ny kanal'
@@ -87,9 +87,9 @@ function Channels() {
                             onChange={(e) => setChannelName(e.target.value)}
                         />
                         <button type='submit' onClick={handleSubmitChannel}>
-                            {/* Lägg till Kanal */}
+                            Lägg till Kanal
                         </button>
-                    </form>
+                    </form> */}
                 </section>
                 <section className='show-channel-section'>
                     <div>
@@ -98,7 +98,7 @@ function Channels() {
                     {channel.map((channel) => (
                         <div className='channel' key={channel.id} onClick={() => handleChannelClick(channel.id)}>
                             <p onClick={() => setSelectedChannel(channel.id)}> #{channel.name}</p>
-                            <button onClick={() => handleDeleteChannel(channel.id)}>Delete Channel</button>
+                            {/* <button onClick={() => handleDeleteChannel(channel.id)}>Delete Channel</button> */}
                         </div>
                     ))}
                 </section>
@@ -106,9 +106,8 @@ function Channels() {
             </div>
             {selectedChannel && (
                 <Messages
-                    channelMessages={channelMessages}
-                    channelName={channelName}
-                    channelId={selectedChannel} // Uppdatera här
+                    channelId={selectedChannel}
+                    channelName={channelName}// Uppdatera här
                 />
             )}
 

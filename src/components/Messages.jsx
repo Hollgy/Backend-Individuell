@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
-function Messages({ channelMessages, channelName, channelId }) {
+function Messages({ channelName, channelId }) {
     const [newMessage, setNewMessage] = useState('');
-    const [messages, setMessages] = useState([]);
-    
+    const [channelMessages, setChannelMessages] = useState([]);
 
     useEffect(() => {
-        setMessages(channelMessages);
-    }, [channelMessages]);
+        const fetchChannelMessages = async () => {
+            try {
+                const response = await fetch(`/api/channels/${channelId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setChannelMessages(data.channelMessages);
+                } else {
+                    throw new Error('Failed to fetch channel messages');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchChannelMessages();
+    }, [channelId]);
 
     const handleMessageSubmit = async () => {
         if (newMessage.trim() === '') {
@@ -21,7 +34,7 @@ function Messages({ channelMessages, channelName, channelId }) {
 
         try {
             const response = await fetch(
-                `http://localhost:9995/api/channels/${channelId}/channelMessages`,
+                `/api/channels/${channelId}/channelMessages`,
                 {
                     method: 'POST',
                     headers: {
@@ -58,7 +71,7 @@ function Messages({ channelMessages, channelName, channelId }) {
     return (
         <div className="chat-area">
             <section className="heading">
-                Chattar i <span className="chat-name">{channelName}</span>
+                Chattar i <span className="chat-name">{channelId}</span>
             </section>
             <section className="history">
                 {channelMessages.length > 0 ? (

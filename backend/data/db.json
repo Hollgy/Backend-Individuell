@@ -1,80 +1,92 @@
 {
-  "users": [
-    {
-      "name": "PratgladePelle",
-      "password": "Pelle",
-      "id": 56672
-    },
-    {
-      "name": "SocialaSara",
-      "password": "Sara",
-      "id": 88645
-    },
-    {
-      "name": "TrevligaTommy",
-      "password": "Tommy",
-      "id": 1354
-    },
-    {
-      "name": "Vänliga Vera",
-      "password": "Vera",
-      "id": 99486
-    },
-    {
-      "name": "GladaGustav",
-      "password": "Gustav",
-      "id": 91836
-    }
-  ],
-  "channels": [
-    {
-      "name": "koda",
-      "id": 64073,
-      "messages": [
+    "users": [
         {
-          "author": "User One",
-          "message": "Hello World",
-          "id": 1
-        }
-      ]
-    },
-    {
-      "name": "grupp1",
-      "id": 57210,
-      "messagesGroupOne": [
-        {
-          "author": "TrevligaTommy",
-          "message": "Hello World",
-          "id": 1
-        }
-      ]
-    },
-    {
-      "name": "grupp2",
-      "id": 76500,
-      "messagesGroupTwo": [
-        {
-          "author": "PratgladePelle",
-          "message": "Hello World",
-          "id": 1
-        }
-      ]
-    },
-    {
-      "name": "grupp3",
-      "id": 24115,
-      "messagesGroupThree": [
-        {
-          "author": "tester 1",
-          "message": "Test message one",
-          "id": 1
+            "name": "PratgladePelle",
+            "password": "Pelle",
+            "id": 56672
         },
         {
-          "author": "Tester 2",
-          "message": "Test message two",
-          "id": 2
+            "name": "SocialaSara",
+            "password": "Sara",
+            "id": 88645
+        },
+        {
+            "name": "TrevligaTommy",
+            "password": "Tommy",
+            "id": 1354
+        },
+        {
+            "name": "Vänliga Vera",
+            "password": "Vera",
+            "id": 99486
+        },
+        {
+            "name": "GladaGustav",
+            "password": "Gustav",
+            "id": 91836
         }
-      ]
-    }
-  ]
+    ],
+    "channels": [
+        {
+            "id": 64073,
+            "name": "koda",
+            "channelMessages": [
+                {
+                    "id": 1,
+                    "author": "User One",
+                    "content": "Hello World"
+                }
+            ]
+        },
+        {
+            "id": 57210,
+            "name": "grupp1",
+            "members": [
+                "user-1",
+                "user-2"
+            ],
+            "channelMessages": [
+                {
+                    "id": 2,
+                    "author": "TrevligaTommy",
+                    "content": "Hello World"
+                }
+            ]
+        },
+        {
+            "id": 76500,
+            "name": "grupp2",
+            "members": [
+                "user-1",
+                "user-2"
+            ],
+            "channelMessages": [
+                {
+                    "id": 3,
+                    "author": "PratgladePelle",
+                    "content": "Hello World"
+                }
+            ]
+        },
+        {
+            "id": 24115,
+            "name": "grupp3",
+            "members": [
+                "user-1",
+                "user-2"
+            ],
+            "channelMessages": [
+                {
+                    "id": 4,
+                    "author": "tester 1",
+                    "content": "Test message one"
+                },
+                {
+                    "id": 5,
+                    "author": "Tester 2",
+                    "content": "Test message two"
+                }
+            ]
+        }
+    ]
 }

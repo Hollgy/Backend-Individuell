@@ -95,6 +95,7 @@ nav .unread {
 
 .chat-area {
 	padding-left: 1em;
+    width: 80%;
 	
 }
 .chat-area > * {
