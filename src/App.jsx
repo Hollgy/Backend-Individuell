@@ -5,8 +5,8 @@ import './styling/App.css'
 // import './styling/sidebar.css'
 // import './styling/header.css'
 import Header from './components/Header'
-import Sidebar from './components/sidebar'
-import Messageboard from './components/Messagboard'
+import Users from './components/Users'
+import Channels from './components/Channels'
 
 
 
@@ -15,9 +15,9 @@ function App() {
     return (
         <>
             <Header />
+            <Channels />
+            <Users />
             <hr />
-            <Sidebar />
-            < Messageboard />
             <hr />
         </>
     )
