@@ -1,3 +1,7 @@
+import { useRecoilState } from "recoil";
+import { messages } from "./components/Data/atoms";
+
+
 const getMessages = async (channelId) => {
     try {
         // Replace with your implementation to fetch messages
@@ -34,13 +38,34 @@ const deleteMessage = async (channelId, messageId, setErrorMessage, setMessages)
 
 
 const addMessage = async (channelId, content, username, setErrorMessage) => {
+    const [messages, setMessages] = useRecoilState(messages);
+
     try {
-        await addMessage(channelId, content, username, setErrorMessage);
-        fetchMessages();
+        const response = await fetch(`/api/channelMessages/${channelId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                channelId,
+                author: username,
+                content,
+            }),
+        });
+
+        if (response.ok) {
+            setMessages(messages); // Assuming fetchMessages is a function to retrieve updated messages
+        } else {
+            const errorData = await response.json();
+            setErrorMessage(errorData.error);
+            console.error('Error:', errorData.error);
+        }
     } catch (error) {
         setErrorMessage(`Error when adding message: ${error.message}`);
+        console.error('An error occurred:', error);
     }
 };
+
 
 const updateMessage = async (channelId, messageId, content, setErrorMessage, setMessages) => {
     setErrorMessage('');

@@ -17,8 +17,6 @@ function App() {
             <Header />
             <Channels />
             <Users />
-            <hr />
-            <hr />
         </>
     )
 }

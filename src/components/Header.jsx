@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { loginState } from "./Data/atoms";
+import { loginState, usernameAtom } from "./Data/atoms";
 import { loginUser } from "./loginEndpoints";
 
 function Header() {
     const [loggedInState, setLoggedInState] = useRecoilState(loginState);
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useRecoilState(usernameAtom);
+    const [usernameTextField, setusernameTextField] = useState('')
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -13,10 +14,11 @@ function Header() {
         e.preventDefault();
 
         try {
-            const success = await loginUser(username, password);
+            const success = await loginUser(usernameTextField, password);
             if (success) {
                 setLoggedInState(true);
-                setUsername(username);
+                setusernameTextField("");
+                setUsername(usernameTextField)
             }
         } catch (error) {
             setErrorMessage(error.message);
@@ -25,7 +27,8 @@ function Header() {
 
     const handleLogout = () => {
         setLoggedInState(false);
-        setUsername("");
+        setUsername("")
+        setusernameTextField("");
         setPassword("");
         setErrorMessage("");
     };
@@ -44,8 +47,8 @@ function Header() {
                         <input
                             type="text"
                             id="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            value={usernameTextField}
+                            onChange={(e) => setusernameTextField(e.target.value)}
                         />
                         <input
                             type="password"

@@ -13,11 +13,12 @@ router.get('/', async (req, res) => {
 });
 
 // POST create a new channel message
-router.post('/channelId', async (req, res) => {
-    const { channelId, author, content } = req.body;
+router.post('/:channelId', async (req, res) => {
+    const { channelId } = req.params;
+    const { author, content } = req.body;
 
     await db.read();
-    const channel = db.data.channels.find((c) => c.id === channelId);
+    const channel = db.data.channels.find((c) => c.id === Number(channelId));
     if (!channel) {
         res.status(404).json({ error: 'Channel not found' });
         return;
