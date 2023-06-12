@@ -1,92 +1,102 @@
 {
-    "users": [
+  "users": [
+    {
+      "name": "PratgladePelle",
+      "password": "Pelle",
+      "id": 56672
+    },
+    {
+      "name": "SocialaSara",
+      "password": "Sara",
+      "id": 88645
+    },
+    {
+      "name": "TrevligaTommy",
+      "password": "Tommy",
+      "id": 1354
+    },
+    {
+      "name": "Vänliga Vera",
+      "password": "Vera",
+      "id": 99486
+    },
+    {
+      "name": "GladaGustav",
+      "password": "Gustav",
+      "id": 91836
+    }
+  ],
+  "channels": [
+    {
+      "id": 64073,
+      "name": "koda",
+      "channelMessages": [
         {
-            "name": "PratgladePelle",
-            "password": "Pelle",
-            "id": 56672
-        },
-        {
-            "name": "SocialaSara",
-            "password": "Sara",
-            "id": 88645
-        },
-        {
-            "name": "TrevligaTommy",
-            "password": "Tommy",
-            "id": 1354
-        },
-        {
-            "name": "Vänliga Vera",
-            "password": "Vera",
-            "id": 99486
-        },
-        {
-            "name": "GladaGustav",
-            "password": "Gustav",
-            "id": 91836
+          "id": 1,
+          "author": "User One",
+          "content": "Hello World"
         }
-    ],
-    "channels": [
+      ]
+    },
+    {
+      "id": 57210,
+      "name": "grupp1",
+      "members": [
+        "user-1",
+        "user-2"
+      ],
+      "channelMessages": [
         {
-            "id": 64073,
-            "name": "koda",
-            "channelMessages": [
-                {
-                    "id": 1,
-                    "author": "User One",
-                    "content": "Hello World"
-                }
-            ]
-        },
-        {
-            "id": 57210,
-            "name": "grupp1",
-            "members": [
-                "user-1",
-                "user-2"
-            ],
-            "channelMessages": [
-                {
-                    "id": 2,
-                    "author": "TrevligaTommy",
-                    "content": "Hello World"
-                }
-            ]
-        },
-        {
-            "id": 76500,
-            "name": "grupp2",
-            "members": [
-                "user-1",
-                "user-2"
-            ],
-            "channelMessages": [
-                {
-                    "id": 3,
-                    "author": "PratgladePelle",
-                    "content": "Hello World"
-                }
-            ]
-        },
-        {
-            "id": 24115,
-            "name": "grupp3",
-            "members": [
-                "user-1",
-                "user-2"
-            ],
-            "channelMessages": [
-                {
-                    "id": 4,
-                    "author": "tester 1",
-                    "content": "Test message one"
-                },
-                {
-                    "id": 5,
-                    "author": "Tester 2",
-                    "content": "Test message two"
-                }
-            ]
+          "id": 2,
+          "author": "TrevligaTommy",
+          "content": "Hello World"
         }
-    ]
+      ]
+    },
+    {
+      "id": 76500,
+      "name": "grupp2",
+      "members": [
+        "user-1",
+        "user-2"
+      ],
+      "channelMessages": [
+        {
+          "id": 3,
+          "author": "PratgladePelle",
+          "content": "Hello World"
+        },
+        {
+          "id": "8e1b4586-8b51-40bc-9b35-50ecb8159c92",
+          "author": "John Doe",
+          "content": "Hello, everyone!"
+        }
+      ]
+    },
+    {
+      "id": 24115,
+      "name": "grupp3",
+      "members": [
+        "user-1",
+        "user-2"
+      ],
+      "channelMessages": [
+        {
+          "id": 4,
+          "author": "tester 1",
+          "content": "Test message one"
+        },
+        {
+          "id": 5,
+          "author": "Tester 2",
+          "content": "Test message two"
+        },
+        {
+          "id": "60f0bd6d-fadc-4791-a50f-4e5d3a6068b3",
+          "author": "John Doe",
+          "content": "Hello, everyone!"
+        }
+      ]
+    }
+  ]
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getMessages, getMessageById, addMessage, deleteMessage, updateMessage } from '../messageEndpoints';
 
 function Messages({ channelName, channelId }) {
     const [newMessage, setNewMessage] = useState('');
