@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST create a new channel message
-router.post('/', async (req, res) => {
+router.post('/channelId', async (req, res) => {
     const { channelId, author, content } = req.body;
 
     await db.read();

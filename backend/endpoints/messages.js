@@ -20,10 +20,17 @@ router.get('/', async (req, res) => {
 // POST[x] addera meddelande
 router.post('/', async (req, res) => {
     let addMessage = req.body
+    let channelId = req.body.channelId
 
     await db.read()
     addMessage.id = Math.floor(Math.random() * 100000)
-    db.data.messages.push(addMessage)
+    const findChannel = db.data.channels.find(channel => channel.id === channelId)
+    if (!findChannel) {
+        res.sendStatus(404)
+        return
+    }
+    findChannel.channelMessages.push(addMessage)
+    // db.data.channels.channelMessages.push(addMessage)
     await db.write()
     res.send({ id: addMessage.id })
 })

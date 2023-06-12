@@ -1,93 +1,67 @@
 import React, { useState, useEffect } from 'react';
-import { getMessages, getMessageById, addMessage, deleteMessage, updateMessage } from '../messageEndpoints';
+import { getMessages, addMessage, deleteMessage, updateMessage, getMessageById } from '../messageEndpoints';
 
 function Messages({ channelName, channelId }) {
+    const [messages, setMessages] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
     const [newMessage, setNewMessage] = useState('');
-    const [channelMessages, setChannelMessages] = useState([]);
+    const [username, setUsername] = useState('');
 
     useEffect(() => {
-        const fetchChannelMessages = async () => {
+        const fetchMessages = async () => {
             try {
-                const response = await fetch(`/api/channels/${channelId}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setChannelMessages(data.channelMessages);
-                } else {
-                    throw new Error('Failed to fetch channel messages');
-                }
+                const response = await getMessages(channelId);
+                setMessages(response);
             } catch (error) {
-                console.log(error);
+                console.log('Error when fetching messages:', error);
+                setErrorMessage('Error when fetching messages');
             }
         };
 
-        fetchChannelMessages();
-    }, [channelId]);
+        fetchMessages();
+    }, [channelId]); // Add 'channelId' to the dependency array
 
-    const handleMessageSubmit = async () => {
-        if (newMessage.trim() === '') {
-            return;
-        }
-
-        const messageData = {
-            author: 'user-1',
-            content: newMessage,
-        };
-
+    const handleAdd = async (channelId, content) => {
         try {
-            const response = await fetch(
-                `/api/channels/${channelId}/channelMessages`,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(messageData),
-                }
-            );
-
-            if (response.ok) {
-                const data = await response.json();
-                const newMessageId = data.id;
-
-                const updatedChannelMessages = [
-                    ...channelMessages,
-                    {
-                        id: newMessageId,
-                        author: messageData.author,
-                        content: messageData.content,
-                        timestamp: new Date().toISOString(),
-                    },
-                ];
-
-                setNewMessage('');
-                setChannelMessages(updatedChannelMessages);
-            } else {
-                console.log('Något gick fel');
-            }
+            await addMessage(channelId, content, username, setErrorMessage);
+            setNewMessage('');
         } catch (error) {
-            console.log('Något gick fel', error);
+            console.log('Error when adding message:', error);
+        }
+    };
+
+    const handleDelete = async (channelId, messageId) => {
+        try {
+            await deleteMessage(channelId, messageId, setErrorMessage, setMessages);
+        } catch (error) {
+            console.log('Error when deleting message:', error);
+        }
+    };
+
+    const handleUpdate = async (channelId, messageId, content) => {
+        try {
+            await updateMessage(channelId, messageId, content, setErrorMessage, setMessages);
+        } catch (error) {
+            console.log('Error when updating message:', error);
         }
     };
 
     return (
         <div className="chat-area">
             <section className="heading">
-                Chattar i <span className="chat-name">{channelId}</span>
+                Chattar i <span className="chat-name">{channelName}</span>
             </section>
-            <section className="history">
-                {channelMessages.length > 0 ? (
-                    channelMessages.map((message) => (
-                        <section key={message.id} className={message.author}>
-                            <p>
-                                {message.author}: {message.content}
-                            </p>
-                            <p>{message.timestamp}</p>
-                        </section>
-                    ))
-                ) : (
-                    <p>Inga meddelanden</p>
-                )}
-            </section>
+            <div>
+                {messages.map((message) => (
+                    <div key={message.id}>
+                        {message.author}: {message.content}
+                        <button onClick={() => handleDelete(channelId, message.id)}>Delete</button>
+                        <button onClick={() => handleUpdate(channelId, message.id, 'Updated Content')}>
+                            Update
+                        </button>
+                    </div>
+                ))}
+            </div>
             <section>
                 <input
                     type="text"
@@ -95,8 +69,9 @@ function Messages({ channelName, channelId }) {
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                 />
-                <button onClick={handleMessageSubmit}>Skicka</button>
+                <button onClick={() => handleAdd(channelId, newMessage)}>Skicka</button>
             </section>
+            {errorMessage && <p>{errorMessage}</p>}
         </div>
     );
 }

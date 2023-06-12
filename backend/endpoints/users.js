@@ -103,4 +103,17 @@ router.put('/:id', async (req, res) => {
 });
 
 
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    await db.read();
+    const user = db.data.users.find((user) => user.name === username);
+
+    if (!user || user.password !== password) {
+        res.status(401).json({ message: 'Wrong user credentials' });
+    } else {
+        res.status(200).json({ message: 'Login Successful' });
+    }
+});
+
 export default router

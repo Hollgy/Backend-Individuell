@@ -1,92 +1,51 @@
-const getMessages = async () => {
+const getMessages = async (channelId) => {
     try {
-        const response = await fetch('api/channelMessages');
+        // Replace with your implementation to fetch messages
+        const response = await fetch(`/api/channelMessages/${channelId}`);
         const data = await response.json();
         return data;
     } catch (error) {
-        console.log('Error when fetching messages');
+        console.log('Error when fetching messages:', error);
+        throw new Error('Error when fetching messages');
+    }
+};
+
+
+const getMessageById = async (channelId, messageId, setErrorMessage) => {
+    setErrorMessage('');
+    try {
+        const message = await getMessageById(channelId, messageId, setErrorMessage);
+        return message;
+    } catch (error) {
+        setErrorMessage(error.message);
+        console.log('Error');
     }
 };
 
 const deleteMessage = async (channelId, messageId, setErrorMessage, setMessages) => {
     setErrorMessage('');
     try {
-        const response = await fetch(`/api/channelMessages/${channelId}/${messageId}`, { method: 'DELETE' });
-        if (response.status === 200) {
-            setMessages((prevMessages) => prevMessages.filter((message) => message.id !== messageId));
-        } else if (response.status === 404) {
-            const errorText = await response.text();
-            setErrorMessage(errorText);
-        } else {
-            throw new Error('Error while deleting message');
-        }
+        await deleteMessage(channelId, messageId, setErrorMessage, setMessages);
     } catch (error) {
         setErrorMessage(error.message);
         console.log('Error');
     }
 };
 
-const addMessage = async (channelId, author, content, setErrorMessage, setMessages) => {
-    setErrorMessage('');
+
+const addMessage = async (channelId, content, username, setErrorMessage) => {
     try {
-        const response = await fetch('/api/channelMessages', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ channelId, author, content }),
-        });
-        if (response.status === 200) {
-            const newMessage = await response.json();
-            setMessages((prevMessages) => [...prevMessages, newMessage]);
-        } else if (response.status === 404) {
-            const errorText = await response.text();
-            setErrorMessage(errorText);
-        } else {
-            throw new Error('Error while adding message');
-        }
+        await addMessage(channelId, content, username, setErrorMessage);
+        fetchMessages();
     } catch (error) {
-        setErrorMessage(error.message);
-        console.log('Error');
+        setErrorMessage(`Error when adding message: ${error.message}`);
     }
 };
 
 const updateMessage = async (channelId, messageId, content, setErrorMessage, setMessages) => {
     setErrorMessage('');
     try {
-        const response = await fetch(`/api/channelMessages/${channelId}/${messageId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ content }),
-        });
-        if (response.status === 200) {
-            const updatedMessage = await response.json();
-            setMessages((prevMessages) =>
-                prevMessages.map((message) => (message.id === messageId ? updatedMessage : message))
-            );
-        } else if (response.status === 404) {
-            const errorText = await response.text();
-            setErrorMessage(errorText);
-        } else {
-            throw new Error('Error while updating message');
-        }
-    } catch (error) {
-        setErrorMessage(error.message);
-        console.log('Error');
-    }
-};
-
-const getMessageById = async (channelId, messageId, setErrorMessage) => {
-    setErrorMessage('');
-    try {
-        const response = await fetch(`/api/channelMessages/${channelId}/${messageId}`);
-        if (response.status === 200) {
-            const message = await response.json();
-            return message;
-        } else if (response.status === 404) {
-            const errorText = await response.text();
-            setErrorMessage(errorText);
-        } else {
-            throw new Error('Error while fetching message');
-        }
+        await updateMessage(channelId, messageId, content, setErrorMessage, setMessages);
     } catch (error) {
         setErrorMessage(error.message);
         console.log('Error');
