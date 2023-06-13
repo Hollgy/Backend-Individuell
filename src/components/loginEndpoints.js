@@ -1,3 +1,5 @@
+const sessionStorageKey = 'jwtTest';
+
 const loginUser = async (username, password) => {
     try {
         const response = await fetch("/api/users/login", {
@@ -8,6 +10,9 @@ const loginUser = async (username, password) => {
 
         if (response.status === 200) {
             // Login success
+            const data = await response.json();
+            const token = data.token;
+            sessionStorage.setItem(sessionStorageKey, token);
             return true;
         } else if (response.status === 404) {
             throw new Error("Invalid username or password");
@@ -19,4 +24,24 @@ const loginUser = async (username, password) => {
     }
 };
 
-export { loginUser };
+const handleGetData = async () => {
+    try {
+        const isJwt = sessionStorage.getItem(sessionStorageKey);
+
+        const options = {
+            headers: {},
+        };
+        if (isJwt) {
+            options.headers.Authorization = "Bearer " + isJwt;
+        }
+
+        const response = await fetch('/api/login', options);
+        const data = await response.json();
+        setMessage(data.message);
+        console.log(message);
+    } catch (error) {
+        throw new Error("Error occurred while fetching data: " + error.message);
+    }
+};
+
+export { loginUser, handleGetData };

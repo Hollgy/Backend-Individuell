@@ -5,6 +5,7 @@ import { usernameAtom } from './Data/atoms';
 import { messagesAtom } from './Data/atoms';
 import { BiCommentEdit } from 'react-icons/bi'
 import { RiChatDeleteLine } from 'react-icons/ri'
+import { AiOutlineUser } from 'react-icons/ai'
 
 
 function Messages({ channelName, channelId }) {
@@ -174,14 +175,14 @@ function Messages({ channelName, channelId }) {
                 {messages.map((message) => (
                     <div key={message.id}>
                         <dl>
-                            <dt>
-                                {message.author || username}:
-                            </dt>
-                            <dd>
+                            <p>
+                                <AiOutlineUser /> {message.author || username}:
+                            </p>
+                            <em>
                                 {message.content}
-                            </dd>
-                        <button title='Delete Message' className='icon-btn' onClick={() => handleDelete(channelId, message.id)}><RiChatDeleteLine /></button>
-                        <button title='Edit Message' className='icon-btn' onClick={() => handleUpdate(message.id)}><BiCommentEdit /></button>
+                            </em>
+                            <button title='Delete Message' className='icon-btn' onClick={() => handleDelete(channelId, message.id)}><RiChatDeleteLine /></button>
+                            <button title='Edit Message' className='icon-btn' onClick={() => handleUpdate(message.id)}><BiCommentEdit /></button>
                         </dl>
                     </div>
                 ))}

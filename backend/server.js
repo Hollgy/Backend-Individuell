@@ -7,13 +7,16 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import usersRouter from './endpoints/users.js'
 import channelsRouter from './endpoints/channels.js'
-// import messagesRouter from './endpoints/messages.js'
-// import loginRouter from './endpoints/messages.js'
 import channelMessagesRouter from './endpoints/channelMessages.js'
 
 //server config
 const port = process.env.PORT || 9922
 const app = express()
+
+export const secretName = () => {
+    const secret = process.env.SECRET_KEY || 'hemlis'
+    return secret
+}
 
 
 //middleware

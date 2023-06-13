@@ -1,6 +1,8 @@
 import express from 'express'
 import { getDb } from '../data/database.js'
 import { isValidUser } from '../data/constants.js'
+import jwt from 'jsonwebtoken'
+import { secretName } from '../server.js'
 
 const router = express.Router()
 const db = getDb()
@@ -13,6 +15,7 @@ const db = getDb()
 // POST[x] addera användare
 // DELETE[x] ta bort användare
 // PUT [x] Ändra namn på användare
+// POST [x] Addera användare
 
 // GET[x] hämta alla användare
 router.get('/', async (req, res) => {
@@ -102,7 +105,6 @@ router.put('/:id', async (req, res) => {
     res.sendStatus(200);
 });
 
-
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
@@ -112,8 +114,17 @@ router.post('/login', async (req, res) => {
     if (!user || user.password !== password) {
         res.status(401).json({ message: 'Wrong user credentials' });
     } else {
-        res.status(200).json({ message: 'Login Successful' });
+        // Display user id, username, and expiration
+        const hours = 60 * 60
+        const payload = { userId: user.id, username: user.username }
+        const options = { expiresIn: 2 * hours }
+        const token = jwt.sign(payload, secretName(), options)
+        console.log('Signed jwt: ', token)
+        let tokenPackage = { token: token }
+
+        res.status(200).send(tokenPackage);
     }
 });
+
 
 export default router

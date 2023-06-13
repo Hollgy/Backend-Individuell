@@ -24,6 +24,11 @@
       "name": "GladaGustav",
       "password": "Gustav",
       "id": 91836
+    },
+    {
+      "name": "Testanvändare",
+      "password": "Gäst",
+      "id": 52732
     }
   ],
   "channels": [
@@ -100,6 +105,11 @@
           "id": "f7ce6711-6af7-4853-a9c3-f4dbdbfa25a5",
           "author": "PratgladePelle",
           "content": "Testmeddelande 1"
+        },
+        {
+          "id": "870e7eec-87f5-44f9-b585-6a0ea9f32694",
+          "author": "Testanvändare",
+          "content": "Test av ny"
         }
       ]
     }

@@ -10,6 +10,9 @@ function Header() {
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
+    const sessionStorageKey = '42'
+
+
     const handleLogin = async (e) => {
         e.preventDefault();
 
