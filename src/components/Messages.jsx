@@ -9,7 +9,8 @@ function Messages({ channelName, channelId }) {
     const [errorMessage, setErrorMessage] = useState('');
     const [newMessage, setNewMessage] = useState('');
     const [username, setUsername] = useRecoilState(usernameAtom);
-
+    const [selectedMessageId, setSelectedMessageId] = useState(null);
+    const [updatedMessageContent, setUpdatedMessageContent] = useState('');
 
 
     const getMessages = async (channelId) => {
@@ -83,15 +84,31 @@ function Messages({ channelName, channelId }) {
         }
     };
 
-    const updateMessage = async (channelId, messageId, content, setErrorMessage, setMessages) => {
+    const updateMessage = async (channelId, messageId, content, setErrorMessage) => {
         setErrorMessage('');
         try {
-            await updateMessage(channelId, messageId, content, setErrorMessage, setMessages);
+            const response = await fetch(`/api/channelMessages/${channelId}/${messageId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                setErrorMessage(errorData.error);
+                console.error('Error:', errorData.error);
+            }
         } catch (error) {
-            setErrorMessage(error.message);
-            console.log('Error');
+            setErrorMessage(`Error when updating message: ${error.message}`);
+            console.error('An error occurred:', error);
         }
     };
+
+
 
 
     useEffect(() => {
@@ -126,10 +143,20 @@ function Messages({ channelName, channelId }) {
         }
     };
 
-    const handleUpdate = async (channelId, messageId, updatedContent) => {
+    const handleUpdate = (messageId) => {
+        setSelectedMessageId(messageId);
+        const message = messages.find((message) => message.id === messageId);
+        setUpdatedMessageContent(message.content);
+    };
+
+    const handleSubmitUpdate = async (event) => {
+        event.preventDefault();
+
         try {
-            await updateMessage(channelId, messageId, updatedContent, setErrorMessage);
+            await updateMessage(channelId, selectedMessageId, updatedMessageContent, setErrorMessage);
             fetchMessages();
+            setSelectedMessageId(null);
+            setUpdatedMessageContent('');
         } catch (error) {
             setErrorMessage(`Error when updating message: ${error.message}`);
         }
@@ -145,12 +172,22 @@ function Messages({ channelName, channelId }) {
                     <div key={message.id}>
                         {message.author || username}: {message.content}
                         <button onClick={() => handleDelete(channelId, message.id)}>Delete</button>
-                        <button onClick={() => handleUpdate(channelId, message.id, 'Updated Content')}>
-                            Update
-                        </button>
+                        <button onClick={() => handleUpdate(message.id)}>Update</button>
                     </div>
                 ))}
             </div>
+            {selectedMessageId && (
+                <form onSubmit={handleSubmitUpdate}>
+                    <input
+                        type="text"
+                        placeholder="Updated content..."
+                        value={updatedMessageContent}
+                        onChange={(e) => setUpdatedMessageContent(e.target.value)}
+                    />
+                    <button type="submit">Save</button>
+                    <button type="button" onClick={() => setSelectedMessageId(null)}>Cancel</button>
+                </form>
+            )}
             <section>
                 <input
                     type="text"

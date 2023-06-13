@@ -24,11 +24,6 @@
       "name": "GladaGustav",
       "password": "Gustav",
       "id": 91836
-    },
-    {
-      "name": "",
-      "password": "",
-      "id": 32827
     }
   ],
   "channels": [
@@ -44,12 +39,12 @@
         {
           "id": "7235402b-7823-40eb-a643-4e29b6a2ebd4",
           "author": "",
-          "content": "asfa"
+          "content": "Updated Content 1"
         },
         {
           "id": "82884228-04a2-44d8-90db-4e4d63ea7234",
           "author": "PratgladePelle",
-          "content": "Test 1"
+          "content": "Updated Content"
         }
       ]
     },
@@ -65,6 +60,11 @@
           "id": 2,
           "author": "TrevligaTommy",
           "content": "Test message 1 channel 57210"
+        },
+        {
+          "id": "4ec3d1eb-117d-4923-b71a-2c0282f7b988",
+          "author": "",
+          "content": "Test 3"
         }
       ]
     },
@@ -80,6 +80,11 @@
           "id": 3,
           "author": "PratgladePelle",
           "content": "Test message channel 76500"
+        },
+        {
+          "id": "5f1f62ca-6d06-4e7d-8cd4-ee60c9765b38",
+          "author": "PratgladePelle",
+          "content": "Test 4 edit"
         }
       ]
     },
@@ -95,6 +100,11 @@
           "id": 4,
           "author": "tester 1",
           "content": "Test message channel 24115"
+        },
+        {
+          "id": "786b3150-b9ac-46cf-869a-bf7459dd7e9a",
+          "author": "",
+          "content": "Test 1"
         }
       ]
     }
