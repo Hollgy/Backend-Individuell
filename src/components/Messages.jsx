@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { usernameAtom } from './Data/atoms';
 import { messagesAtom } from './Data/atoms';
+import { BiCommentEdit } from 'react-icons/bi'
+import { RiChatDeleteLine } from 'react-icons/ri'
+
 
 function Messages({ channelName, channelId }) {
     const [messages, setMessages] = useRecoilState(messagesAtom);
@@ -113,7 +116,7 @@ function Messages({ channelName, channelId }) {
 
     useEffect(() => {
         fetchMessages();
-    }, [channelId]);
+    }, [channelId, channelName]);
 
     const fetchMessages = async () => {
         try {
@@ -170,14 +173,22 @@ function Messages({ channelName, channelId }) {
             <div>
                 {messages.map((message) => (
                     <div key={message.id}>
-                        {message.author || username}: {message.content}
-                        <button onClick={() => handleDelete(channelId, message.id)}>Delete</button>
-                        <button onClick={() => handleUpdate(message.id)}>Update</button>
+                        <dl>
+                            <dt>
+                                {message.author || username}:
+                            </dt>
+                            <dd>
+                                {message.content}
+                            </dd>
+                        <button title='Delete Message' className='icon-btn' onClick={() => handleDelete(channelId, message.id)}><RiChatDeleteLine /></button>
+                        <button title='Edit Message' className='icon-btn' onClick={() => handleUpdate(message.id)}><BiCommentEdit /></button>
+                        </dl>
                     </div>
                 ))}
             </div>
             {selectedMessageId && (
                 <form onSubmit={handleSubmitUpdate}>
+                    <label htmlFor="edit">Redigera meddelande: </label>
                     <input
                         type="text"
                         placeholder="Updated content..."
@@ -189,6 +200,7 @@ function Messages({ channelName, channelId }) {
                 </form>
             )}
             <section>
+                <label htmlFor="add">Skicka nytt meddelande: </label>
                 <input
                     type="text"
                     placeholder="Ditt meddelande..."

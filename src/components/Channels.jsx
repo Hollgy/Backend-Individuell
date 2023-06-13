@@ -77,7 +77,7 @@ function Channels() {
     return (
         <div>
             <hr />
-            <div className='side-bar'>
+            <div className='nav'>
                 <section className='add-channel-section'>
                     {/* <form action='submit' className='add-channel-form'>
                         <input

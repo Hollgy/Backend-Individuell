@@ -37,14 +37,9 @@
           "content": "test message 1 channel 64073 "
         },
         {
-          "id": "7235402b-7823-40eb-a643-4e29b6a2ebd4",
-          "author": "",
-          "content": "Updated Content 1"
-        },
-        {
-          "id": "82884228-04a2-44d8-90db-4e4d63ea7234",
+          "id": "0341cbd9-70b4-4910-9bd7-d69fd2d50cc0",
           "author": "PratgladePelle",
-          "content": "Updated Content"
+          "content": "TestMeddelande 2"
         }
       ]
     },
@@ -62,9 +57,9 @@
           "content": "Test message 1 channel 57210"
         },
         {
-          "id": "4ec3d1eb-117d-4923-b71a-2c0282f7b988",
-          "author": "",
-          "content": "Test 3"
+          "id": "88c68d54-98c7-44ba-a9e1-d0eb2d605139",
+          "author": "TrevligaTommy",
+          "content": "Test meddelande 2"
         }
       ]
     },
@@ -102,9 +97,9 @@
           "content": "Test message channel 24115"
         },
         {
-          "id": "786b3150-b9ac-46cf-869a-bf7459dd7e9a",
-          "author": "",
-          "content": "Test 1"
+          "id": "f7ce6711-6af7-4853-a9c3-f4dbdbfa25a5",
+          "author": "PratgladePelle",
+          "content": "Testmeddelande 1"
         }
       ]
     }

@@ -51,7 +51,7 @@ function Users() {
 
     return (
         <>
-            <div className='side-bar'>
+            <div className='nav'>
                 <br />
                 <section className='add-user-section'>
                     <form action="submit" className='add-user-form'>

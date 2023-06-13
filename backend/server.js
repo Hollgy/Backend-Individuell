@@ -7,8 +7,8 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import usersRouter from './endpoints/users.js'
 import channelsRouter from './endpoints/channels.js'
-import messagesRouter from './endpoints/messages.js'
-import loginRouter from './endpoints/messages.js'
+// import messagesRouter from './endpoints/messages.js'
+// import loginRouter from './endpoints/messages.js'
 import channelMessagesRouter from './endpoints/channelMessages.js'
 
 //server config
@@ -32,8 +32,8 @@ app.use(express.static(pathToStaticFolder))
 
 app.use('/api/users', usersRouter)
 app.use('/api/channels', channelsRouter)
-app.use('/api/messages', messagesRouter)
-app.use('/api/login', loginRouter)
+// app.use('/api/messages', messagesRouter)
+// app.use('/api/login', loginRouter)
 app.use('/api/channelMessages', channelMessagesRouter)
 
 
