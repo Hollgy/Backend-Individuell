@@ -47,14 +47,9 @@
           "content": "asfa"
         },
         {
-          "id": "bd69c1a5-c611-4947-b502-9eb61fbe3baf",
+          "id": "82884228-04a2-44d8-90db-4e4d63ea7234",
           "author": "PratgladePelle",
-          "content": "Dinmamma"
-        },
-        {
-          "id": "337efd35-76ac-4d51-942d-e5ae83e8c37b",
-          "author": "GladaGustav",
-          "content": "Dinpappa"
+          "content": "Test 1"
         }
       ]
     },
@@ -70,11 +65,6 @@
           "id": 2,
           "author": "TrevligaTommy",
           "content": "Test message 1 channel 57210"
-        },
-        {
-          "id": "35efa5ee-640e-49e5-aead-fff664dd914d",
-          "author": "",
-          "content": "Test message 2 channel 57210"
         }
       ]
     },
@@ -105,11 +95,6 @@
           "id": 4,
           "author": "tester 1",
           "content": "Test message channel 24115"
-        },
-        {
-          "id": "84146614-1c6b-4601-a890-26efec46617e",
-          "author": "PratgladePelle",
-          "content": "Test 2"
         }
       ]
     }

@@ -33,16 +33,27 @@ function Messages({ channelName, channelId }) {
             console.log('Error');
         }
     };
-
-    const deleteMessage = async (channelId, messageId, setErrorMessage, setMessages) => {
+    const deleteMessage = async (channelId, messageId, setErrorMessage) => {
         setErrorMessage('');
         try {
-            await deleteMessage(channelId, messageId, setErrorMessage, setMessages);
+            const response = await fetch(`/api/channelMessages/${channelId}/${messageId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                setErrorMessage(errorData.error);
+                console.error('Error:', errorData.error);
+            }
         } catch (error) {
-            setErrorMessage(error.message);
-            console.log('Error');
+            setErrorMessage(`Error when deleting message: ${error.message}`);
+            console.error('An error occurred:', error);
         }
     };
+
 
     const addMessage = async (channelId, content, username, setErrorMessage, messagesAtom) => {
 
