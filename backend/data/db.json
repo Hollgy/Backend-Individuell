@@ -40,6 +40,21 @@
           "id": 1,
           "author": "User One",
           "content": "test message 1 channel 64073 "
+        },
+        {
+          "id": "7235402b-7823-40eb-a643-4e29b6a2ebd4",
+          "author": "",
+          "content": "asfa"
+        },
+        {
+          "id": "bd69c1a5-c611-4947-b502-9eb61fbe3baf",
+          "author": "PratgladePelle",
+          "content": "Dinmamma"
+        },
+        {
+          "id": "337efd35-76ac-4d51-942d-e5ae83e8c37b",
+          "author": "GladaGustav",
+          "content": "Dinpappa"
         }
       ]
     },

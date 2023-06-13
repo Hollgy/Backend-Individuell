@@ -1,14 +1,86 @@
 import React, { useState, useEffect } from 'react';
-import { getMessages, addMessage, deleteMessage, updateMessage, getMessageById } from '../messageEndpoints';
+// import { getMessages, addMessage, deleteMessage, updateMessage, getMessageById } from '../messageEndpoints';
 import { useRecoilState } from 'recoil';
 import { usernameAtom } from './Data/atoms';
-import { messages } from './Data/atoms';
+import { messagesAtom } from './Data/atoms';
 
 function Messages({ channelName, channelId }) {
-    const [messages, setMessages] = useRecoilState(messages);
+    const [messages, setMessages] = useRecoilState(messagesAtom);
     const [errorMessage, setErrorMessage] = useState('');
     const [newMessage, setNewMessage] = useState('');
     const [username, setUsername] = useRecoilState(usernameAtom);
+
+
+
+    const getMessages = async (channelId) => {
+        try {
+            const response = await fetch(`/api/channelMessages/${channelId}`);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.log('Error when fetching messages:', error);
+            throw new Error('Error when fetching messages');
+        }
+    };
+
+    const getMessageById = async (channelId, messageId, setErrorMessage) => {
+        setErrorMessage('');
+        try {
+            const message = await getMessageById(channelId, messageId, setErrorMessage);
+            return message;
+        } catch (error) {
+            setErrorMessage(error.message);
+            console.log('Error');
+        }
+    };
+
+    const deleteMessage = async (channelId, messageId, setErrorMessage, setMessages) => {
+        setErrorMessage('');
+        try {
+            await deleteMessage(channelId, messageId, setErrorMessage, setMessages);
+        } catch (error) {
+            setErrorMessage(error.message);
+            console.log('Error');
+        }
+    };
+
+    const addMessage = async (channelId, content, username, setErrorMessage, messagesAtom) => {
+
+        try {
+            const response = await fetch(`/api/channelMessages/${channelId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    channelId,
+                    author: username,
+                    content,
+                }),
+            });
+
+            if (response.ok) {
+                setMessages(messages); // Assuming fetchMessages is a function to retrieve updated messages
+            } else {
+                const errorData = await response.json();
+                setErrorMessage(errorData.error);
+                console.error('Error:', errorData.error);
+            }
+        } catch (error) {
+            setErrorMessage(`Error when adding message: ${error.message}`);
+            console.error('An error occurred:', error);
+        }
+    };
+
+    const updateMessage = async (channelId, messageId, content, setErrorMessage, setMessages) => {
+        setErrorMessage('');
+        try {
+            await updateMessage(channelId, messageId, content, setErrorMessage, setMessages);
+        } catch (error) {
+            setErrorMessage(error.message);
+            console.log('Error');
+        }
+    };
 
 
     useEffect(() => {

@@ -10,7 +10,7 @@ export const usernameAtom = atom({
     default: ''
 })
 
-export const messages = atom({
-    key: 'messages',
-    default: null
+export const messagesAtom = atom({
+    key: 'messagesAtom',
+    default: []
 })
