@@ -34,7 +34,7 @@
   "channels": [
     {
       "id": 64073,
-      "name": "koda",
+      "name": "Koda",
       "channelMessages": [
         {
           "id": 1,
@@ -42,15 +42,15 @@
           "content": "test message 1 channel 64073 "
         },
         {
-          "id": "0341cbd9-70b4-4910-9bd7-d69fd2d50cc0",
+          "id": "0b58a097-19a0-41cc-892a-16db5d60abb3",
           "author": "PratgladePelle",
-          "content": "TestMeddelande 2"
+          "content": "Hejsan!!!!"
         }
       ]
     },
     {
       "id": 57210,
-      "name": "grupp1",
+      "name": "Grupp 1",
       "members": [
         "user-1",
         "user-2"
@@ -70,7 +70,7 @@
     },
     {
       "id": 76500,
-      "name": "grupp2",
+      "name": "Grupp 2",
       "members": [
         "user-1",
         "user-2"
@@ -90,7 +90,7 @@
     },
     {
       "id": 24115,
-      "name": "grupp3",
+      "name": "Grupp 3",
       "members": [
         "user-1",
         "user-2"

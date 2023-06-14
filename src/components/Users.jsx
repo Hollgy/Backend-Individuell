@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getUsers, deleteUser, addUser } from '../userEndpoints'
 import { AiOutlineUser } from 'react-icons/ai'
+import { HiOutlineUserRemove } from 'react-icons/hi'
 
 function Users() {
     const [errorMessage, setErrorMessage] = useState('')
@@ -56,6 +57,7 @@ function Users() {
                 <br />
                 <section className='add-user-section'>
                     <form action="submit" className='add-user-form'>
+                    <h4>Registrera användare</h4>
                         <input type="text" placeholder='Namn på ny användare' value={userName} onChange={e => setUserName(e.target.value)} />
                         <input type="text" placeholder='Ange lösenord' value={userPassword} onChange={e => setUserPassword(e.target.value)} /><button type='submit' onClick={handleSubmitUser}>Lägg till användare</button>
                     </form>
@@ -66,8 +68,8 @@ function Users() {
                     {/* <button onClick={handleGetUsers}>Show me all the users</button> */}
                     {user.map(user => (
                         <div className='user' key={user.id}>
-                            <p> <AiOutlineUser /> {user.name}</p>
-                            {/* <button onClick={() => handleDeleteUser(user.id)}>Delete User</button> */}
+                            <h4> <AiOutlineUser /> {user.name}</h4>
+                            <button title='remove user' onClick={() => handleDeleteUser(user.id)}><HiOutlineUserRemove /></button>
                         </div>
                     ))}
                 </section>

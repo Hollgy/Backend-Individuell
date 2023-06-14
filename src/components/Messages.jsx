@@ -16,6 +16,9 @@ function Messages({ channelName, channelId }) {
     const [selectedMessageId, setSelectedMessageId] = useState(null);
     const [updatedMessageContent, setUpdatedMessageContent] = useState('');
 
+    useEffect(() => {
+        fetchMessages();
+    }, [channelId]);
 
     const getMessages = async (channelId) => {
         try {
@@ -31,7 +34,7 @@ function Messages({ channelName, channelId }) {
     const getMessageById = async (channelId, messageId, setErrorMessage) => {
         setErrorMessage('');
         try {
-            const message = await getMessageById(channelId, messageId, setErrorMessage);
+            const message = await getMessageById(channelId, messageId, setErrorMessage);//  TODO getmessagesby Id kallar på sig själv
             return message;
         } catch (error) {
             setErrorMessage(error.message);
@@ -58,8 +61,6 @@ function Messages({ channelName, channelId }) {
             console.error('An error occurred:', error);
         }
     };
-
-
     const addMessage = async (channelId, content, username, setErrorMessage, messagesAtom) => {
 
         try {
@@ -87,7 +88,6 @@ function Messages({ channelName, channelId }) {
             console.error('An error occurred:', error);
         }
     };
-
     const updateMessage = async (channelId, messageId, content, setErrorMessage) => {
         setErrorMessage('');
         try {
@@ -111,13 +111,6 @@ function Messages({ channelName, channelId }) {
             console.error('An error occurred:', error);
         }
     };
-
-
-
-
-    useEffect(() => {
-        fetchMessages();
-    }, [channelId, channelName]);
 
     const fetchMessages = async () => {
         try {
@@ -153,6 +146,17 @@ function Messages({ channelName, channelId }) {
         setUpdatedMessageContent(message.content);
     };
 
+
+    // const getChannelName = async () => {
+    //     try {
+    //         const response = await fetch(`/api/channels/${channelId}`)
+    //         const data = await response.json()
+    //         console.log('Get channel name funktionen', data);
+    //         data.channel.name
+    //     } catch (error) {
+    //     }
+    // }
+
     const handleSubmitUpdate = async (event) => {
         event.preventDefault();
 
@@ -169,15 +173,15 @@ function Messages({ channelName, channelId }) {
     return (
         <div className="chat-area">
             <section className="heading">
-                Chattar i <span className="chat-name">{channelId}</span>
+                Chattar i <span className="chat-name">{channelName}</span>
             </section>
             <div>
                 {messages.map((message) => (
                     <div key={message.id}>
                         <dl>
-                            <p>
+                            <h4>
                                 <AiOutlineUser /> {message.author || username}:
-                            </p>
+                            </h4>
                             <em>
                                 {message.content}
                             </em>

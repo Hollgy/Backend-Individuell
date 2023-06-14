@@ -5,20 +5,19 @@ import Messages from './Messages'
 
 
 function Channels() {
-    const [channelName, setChannelName] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const [channel, setChannel] = useState([])
     const [selectedChannel, setSelectedChannel] = useState(null);
-    const [messages, setMessages] = useState([]); // Ny state-variabel för meddelanden
+    // const [messages, setMessages] = useState([]); // Ny state-variabel för meddelanden
     const [channelMessages, setChannelMessages] = useState([]);
 
-
+    const channelName = channel.find(c => c.id == selectedChannel)?.name
 
     useEffect(() => {
         handleGetChannels()
     }, [])
 
-
+    // console.log('Channels:', channel, selectedChannel, channelName,);
 
 
     const handleGetChannels = async () => {
@@ -32,6 +31,8 @@ function Channels() {
         }
     };
 
+    // kod för handle av DeleteChannel samt Submit kvarstår då funktionen finns, bara att den inte brukas i webappen.
+
     const handleDeleteChannel = async (channelId) => {
         try {
             await deleteChannel(channelId, setErrorMessage, setChannel);
@@ -43,7 +44,6 @@ function Channels() {
     const handleSubmitChannel = async (event) => {
         event.preventDefault();
         try {
-            setChannelName('');
             const newChannel = { name: channelName, id: Math.random().toString() };
             await addChannel(channelName, setErrorMessage, getChannels, newChannel);
             setChannel((prevChannels) => [...prevChannels, newChannel]);
@@ -60,12 +60,7 @@ function Channels() {
             if (response.ok) {
                 const data = await response.json();
                 setChannelMessages(data);
-                if (channelName) {
-                    setChannelName(channelName); // Sätt kanalnamnet om det är definierat
-                } else {
-                    setChannelName(''); // Återställ kanalnamnet till tom sträng om det är odefinierat
-                }
-                console.log(data);
+                // console.log(data);
             } else {
                 throw new Error('Failed to fetch channel messages');
             }
@@ -96,10 +91,10 @@ function Channels() {
                         <h3>[Kanaler]:</h3>
                     </div>
                     {channel.map((channel) => (
-                        <div className='channel' key={channel.id} onClick={() => handleChannelClick(channel.id)}>
+                        <h3 className='channel' key={channel.id} onClick={() => handleChannelClick(channel.id)}>
                             <p onClick={() => setSelectedChannel(channel.id)}> #{channel.name}</p>
                             {/* <button onClick={() => handleDeleteChannel(channel.id)}>Delete Channel</button> */}
-                        </div>
+                        </h3>
                     ))}
                 </section>
                 <br />
@@ -107,7 +102,7 @@ function Channels() {
             {selectedChannel && (
                 <Messages
                     channelId={selectedChannel}
-                    channelName={channelName}// Uppdatera här
+                    channelName={channelName}
                 />
             )}
 
