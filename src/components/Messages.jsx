@@ -41,6 +41,7 @@ function Messages({ channelName, channelId }) {
             console.log('Error');
         }
     };
+
     const deleteMessage = async (channelId, messageId, setErrorMessage) => {
         setErrorMessage('');
         try {
@@ -61,6 +62,7 @@ function Messages({ channelName, channelId }) {
             console.error('An error occurred:', error);
         }
     };
+
     const addMessage = async (channelId, content, username, setErrorMessage, messagesAtom) => {
 
         try {
@@ -88,6 +90,7 @@ function Messages({ channelName, channelId }) {
             console.error('An error occurred:', error);
         }
     };
+
     const updateMessage = async (channelId, messageId, content, setErrorMessage) => {
         setErrorMessage('');
         try {
@@ -145,17 +148,6 @@ function Messages({ channelName, channelId }) {
         const message = messages.find((message) => message.id === messageId);
         setUpdatedMessageContent(message.content);
     };
-
-
-    // const getChannelName = async () => {
-    //     try {
-    //         const response = await fetch(`/api/channels/${channelId}`)
-    //         const data = await response.json()
-    //         console.log('Get channel name funktionen', data);
-    //         data.channel.name
-    //     } catch (error) {
-    //     }
-    // }
 
     const handleSubmitUpdate = async (event) => {
         event.preventDefault();
