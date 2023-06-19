@@ -35,6 +35,7 @@
         {
             "id": 64073,
             "name": "Koda",
+            "public": true,
             "channelMessages": [
                 {
                     "id": "0b58a097-19a0-41cc-892a-16db5d60abb3",
@@ -46,6 +47,7 @@
         {
             "id": 57210,
             "name": "Grupp 1",
+            "public": false,
             "members": [
                 "user-1",
                 "user-2"
@@ -66,6 +68,7 @@
         {
             "id": 76500,
             "name": "Grupp 2",
+            "public": false,
             "members": [
                 "user-1",
                 "user-2"
@@ -81,6 +84,7 @@
         {
             "id": 24115,
             "name": "Grupp 3",
+            "public": false,
             "members": [
                 "user-1",
                 "user-2"
