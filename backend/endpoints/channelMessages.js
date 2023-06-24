@@ -1,16 +1,32 @@
 import express from 'express';
 import { getDb } from '../data/database.js';
 import { v4 as uuidv4 } from 'uuid';
+import jwt from 'jsonwebtoken';
+import { secretName } from '../server.js';
 
 const router = express.Router();
 const db = getDb();
 
 // GET all channel messages
 router.get('/', async (req, res) => {
-    await db.read();
-    const channelMessages = db.data.channels.flatMap((channel) => channel.channelMessages);
-    res.json(channelMessages);
+    // console.log(req.headers);
+    const token = req.headers.token
+    if (token) {
+        if (jwt.verify(token, secretName())) {
+            console.log('Verification Succeded', token);
+            await db.read();
+            const channelMessages = db.data.channels.flatMap((channel) => channel.channelMessages);
+            res.json(channelMessages);
+        } else {
+            res.status(451);
+            console.log('Token exists but isnt valid');
+        }
+    }
+    else { // No token in header
+        res.sendStatus(400)
+    }
 });
+
 
 // POST create a new channel message
 router.post('/:channelId', async (req, res) => {

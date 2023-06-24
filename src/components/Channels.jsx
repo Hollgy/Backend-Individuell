@@ -72,8 +72,8 @@ function Channels() {
         }
     };
 
-    console.log(isLoggedIn);
-    console.log(channel);
+    // console.log(isLoggedIn);
+    // console.log(channel);
     return (
         <div>
             <hr />

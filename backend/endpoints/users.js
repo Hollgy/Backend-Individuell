@@ -7,6 +7,8 @@ import { secretName } from '../server.js'
 const router = express.Router()
 const db = getDb()
 
+const { sign } = jwt;
+
 
 // endpoints för användare
 
@@ -114,17 +116,17 @@ router.post('/login', async (req, res) => {
     if (!user || user.password !== password) {
         res.status(401).json({ message: 'Wrong user credentials' });
     } else {
-        // Display user id, username, and expiration
-        const hours = 60 * 60
-        const payload = { userId: user.id, username: user.username }
-        const options = { expiresIn: 2 * hours }
-        const token = jwt.sign(payload, secretName(), options)
-        console.log('Signed jwt: ', token)
-        let tokenPackage = { token: token }
-
-        res.status(200).send(tokenPackage);
+        const hours = 60 * 60;
+        const payload = { userId: user.id, username: user.username };
+        const options = { expiresIn: 2 * hours };
+        const token = jwt.sign(payload, secretName(), options);
+        // console.log('Signed jwt:', token);
+        // console.log('Decoded JWT:', jwt.decode(token));
+        const tokenPackage = { token: token };
+        res.send(tokenPackage);
     }
 });
+
 
 
 export default router

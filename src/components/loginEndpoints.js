@@ -11,6 +11,7 @@ const loginUser = async (username, password) => {
         if (response.status === 200) {
             // Login success
             const data = await response.json();
+            console.log(data);
             const token = data.token;
             sessionStorage.setItem(sessionStorageKey, token);
             return true;
